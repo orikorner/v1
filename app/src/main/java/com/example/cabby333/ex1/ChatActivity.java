@@ -30,6 +30,8 @@ public class ChatActivity extends AppCompatActivity {
         Button msgButton = findViewById(R.id.SendButton);
         msgButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                CustomAdaptor adapter = new CustomAdaptor(this, msgsArray);
+                mListView.setAdapter(adapter);
                 EditText msg = findViewById(R.id.chatBox);
                 msgsArray.add(msg.getText().toString());
             }
