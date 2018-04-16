@@ -13,10 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-/**
- * Created by cabby333 on 4/16/18.
- */
-
 public class CustomAdaptor extends ArrayAdapter<String>
 {
     private LayoutInflater myInflater;
