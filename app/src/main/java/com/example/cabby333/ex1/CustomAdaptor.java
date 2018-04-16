@@ -16,34 +16,30 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CustomAdaptor extends BaseAdapter
+class CustomAdaptor extends BaseAdapter
 {
     private Context mContext;
     private LayoutInflater mInflater;
-    private ArrayList<String[]> msgs;
+    private ArrayList<ChatBox> msgs;
 
-//    CustomAdaptor(Context context, String[] msg) {
-//        super(context, R.layout.custom_list_row, msg);
-//    }
-
-    public CustomAdaptor(Context context, ArrayList<String[]> items) {
-        mContext = context;
-        msgs = items;
-        mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    CustomAdaptor(Context context, ArrayList<ChatBox> items) {
+        this.mContext = context;
+        this.msgs = items;
+        this.mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        myInflater = LayoutInflater.from(getContext());
-        View rowItem = myInflater.inflate(R.layout.custom_list_row, parent, false);
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
+        View rowItem = mInflater.inflate(R.layout.custom_list_row, parent, false);
+        TextView outBox = (TextView) rowItem.findViewById(R.id.line);
+        ImageView outImage = (ImageView) rowItem.findViewById(R.id.oriIm);
 
-        TextView myMsg = (TextView) rowItem.findViewById(R.id.rowData);
-        ImageView myImage = (ImageView) rowItem.findViewById(R.id.imageView);
+        ChatBox currChatBox = getItem(position);
 
-        String[] msg = getItem(position);
+        outBox.setText(currChatBox.name);
+        outImage.setImageResource(R.drawable.ori);
 
-        myMsg.setText(msg1);
-        myImage.setImageResource(R.drawable.ori);
         return rowItem;
     }
 
@@ -53,17 +49,17 @@ public class CustomAdaptor extends BaseAdapter
     }
 
     @Override
-    public String[] getItem(int position) {
+    public ChatBox getItem(int position) {
         return msgs.get(position);
     }
 
     @Override
-    public int getItemId(int position) {
+    public long getItemId(int position) {
         return position;
     }
 
-    private static class ViewHolder {
-        public ImageView img, vader;
-        public TextView name;
-    }
+    //    private static class ViewHolder {
+//        public ImageView img;
+//        public TextView line;
+//    }
 }
