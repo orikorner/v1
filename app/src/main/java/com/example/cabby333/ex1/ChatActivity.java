@@ -31,7 +31,7 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_chat);
-
+        System.out.println("FFS");
         mListView = findViewById(R.id.OriListView);
         Button msgButton = findViewById(R.id.SendButton);
         Log.i(TAG, "onCreate");

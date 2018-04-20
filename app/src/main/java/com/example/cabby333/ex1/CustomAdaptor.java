@@ -57,9 +57,4 @@ class CustomAdaptor extends BaseAdapter
     public long getItemId(int position) {
         return position;
     }
-
-    //    private static class ViewHolder {
-//        public ImageView img;
-//        public TextView line;
-//    }
 }
