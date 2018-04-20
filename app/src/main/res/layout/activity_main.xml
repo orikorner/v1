@@ -1,46 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="com.example.cabby333.ex1.ChatActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context="com.example.cabby333.ex1.MainActivity">
+
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="0dp"
-        android:layout_height="107dp"
-        android:ems="12"
-        android:inputType="textPersonName"
-        android:selectAllOnFocus="false"
-        android:singleLine="false"
-        android:text="Welcome to the Awesome Self Chat App !"
-        android:textAlignment="center"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="60dp"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp" />
+        android:id="@+id/name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Enter your name here..." />
+
+    <EditText
+        android:id="@+id/msgInput"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/name"
+        android:text="Enter your msg here..." />
+
+    <ListView
+        android:id="@+id/OriListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp">
+    </ListView>
 
     <Button
-        android:id="@+id/chatButton"
-        style="@android:style/Widget.Holo.Light.Button"
+        android:id="@+id/SendButton"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Chatting"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_toRightOf="@+id/msgInput"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Send" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--tools:context="com.example.cabby333.ex1.ChatActivity">-->
+
+    <!--<EditText-->
+        <!--android:id="@+id/editText"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="107dp"-->
+        <!--android:ems="12"-->
+        <!--android:inputType="textPersonName"-->
+        <!--android:selectAllOnFocus="false"-->
+        <!--android:singleLine="false"-->
+        <!--android:text="Welcome to the Awesome Self Chat App !"-->
+        <!--android:textAlignment="center"-->
+        <!--tools:layout_constraintTop_creator="1"-->
+        <!--tools:layout_constraintRight_creator="1"-->
+        <!--android:layout_marginStart="15dp"-->
+        <!--android:layout_marginEnd="15dp"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--android:layout_marginTop="60dp"-->
+        <!--tools:layout_constraintLeft_creator="1"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_marginRight="15dp" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/chatButton"-->
+        <!--style="@android:style/Widget.Holo.Light.Button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Start Chatting"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--tools:layout_constraintBottom_creator="1"-->
+        <!--tools:layout_constraintLeft_creator="1"-->
+        <!--tools:layout_constraintRight_creator="1"-->
+        <!--tools:layout_constraintTop_creator="1" />-->
+
+<!--</android.support.constraint.ConstraintLayout>-->
