@@ -29,22 +29,23 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_chat);
 
         mListView = findViewById(R.id.OriListView);
+
+        CustomAdaptor adapter = new CustomAdaptor(this, chatBoxArr);
+        mListView.setAdapter(adapter);
+
         Button msgButton = findViewById(R.id.SendButton);
+
         Log.i(TAG, "onCreate");
         msgButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.i(TAG, "onClickChat");
+
                 String currName = findViewById(R.id.name).toString();
-                System.out.println(currName);
                 String currInput = findViewById(R.id.msgInput).toString();
                 String currTime = dateFormat.format(date);
 
                 ChatBox newChatBox = new ChatBox(currName, currInput, currTime);
                 chatBoxArr.add(newChatBox);
-
-                CustomAdaptor adapter = new CustomAdaptor(getBaseContext(), chatBoxArr);
-                mListView.setAdapter(adapter);
-
             }
         });
 
