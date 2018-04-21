@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/li_friend_height"
     android:orientation="horizontal"
     android:weightSum="1">
 
@@ -12,7 +12,6 @@
         android:layout_width="@dimen/li_friend_image_size"
         android:layout_height="@dimen/li_friend_image_size"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_margin="@dimen/li_friend_image_margin"
         android:scaleType="centerCrop"
         tools:src="@drawable/ori"/>
@@ -21,11 +20,12 @@
         android:id="@+id/line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/li_friend_image_margin_right"
+        android:layout_marginTop="@dimen/li_friend_image_margin_top"
         android:layout_toEndOf="@+id/oriIm"
-        android:layout_toRightOf="@+id/oriIm"
-        android:layout_centerVertical="true"
         android:padding="@dimen/app_default_padding"
         android:textSize="@dimen/text_size_large"
-        tools:text=" Ori Korner: "/>
+        tools:text=" Ori Korner: " />
 
 </RelativeLayout>
