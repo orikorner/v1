@@ -1,8 +1,10 @@
 package com.example.cabby333.ex1;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -18,29 +20,35 @@ import java.util.ArrayList;
 
 class CustomAdaptor extends BaseAdapter
 {
-    private Context mContext;
-    private LayoutInflater mInflater;
-    private ArrayList<ChatBox> msgs;
 
-    CustomAdaptor(Context context, ArrayList<ChatBox> items) {
-        this.mContext = context;
+    final private ArrayList<ChatBox> msgs;
+    private String TAG = "CustomAdapter";
+
+    CustomAdaptor(ArrayList<ChatBox> items) {
         this.msgs = items;
-        this.mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        View rowItem = mInflater.inflate(R.layout.custom_list_row, parent, false);
+        Log.i(TAG, "getView");
+        @SuppressLint("ViewHolder") View rowItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_list_row, parent, false);
         TextView outBox = (TextView) rowItem.findViewById(R.id.line);
         ImageView outImage = (ImageView) rowItem.findViewById(R.id.oriIm);
 
         ChatBox currChatBox = getItem(position);
 
-        outBox.setText(currChatBox.name);
+        String newLine = "(" + currChatBox.getTimeStamp() + ")\n" + "From: " + currChatBox.getName() + "\n" + currChatBox.getMsg();
+        outBox.setText(newLine);
         outImage.setImageResource(R.drawable.ori);
 
         return rowItem;
+    }
+
+    public void addMessage(ChatBox newMsg)
+    {
+        Log.i(TAG, "addMessage");
+        msgs.add(newMsg);
     }
 
     @Override
