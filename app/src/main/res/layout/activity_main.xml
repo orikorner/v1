@@ -10,6 +10,14 @@
     android:paddingRight="16dp"
     tools:context="com.example.cabby333.ex1.MainActivity">
 
+
+    <FrameLayout
+        android:id="@+id/activity_main_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
     <Button
         android:id="@+id/SendButton"
         style="@style/Widget.AppCompat.Button.Colored"

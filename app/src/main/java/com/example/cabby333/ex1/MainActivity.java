@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements MessageFragmentListener
 {
 
     private CustomAdaptor mAdapter;
@@ -74,5 +74,14 @@ public class MainActivity extends AppCompatActivity
                 sendButton.setEnabled(!TextUtils.isEmpty(s));
             }
         });
+    }
+
+    @Override
+    public void onNextMessageClicked() {
+        Log.i(TAG, "onNextMessageClicked");
+        MessageFragment messageFragment = MessageFragment.newInstance("WORLD !!!");
+
+        getSupportFragmentManager().beginTransaction().
+                replace(R.id.activity_main_frame, messageFragment).commit();
     }
 }
