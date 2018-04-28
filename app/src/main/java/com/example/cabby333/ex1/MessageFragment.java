@@ -6,14 +6,20 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.util.Date;
 
 
 public class MessageFragment extends DialogFragment {
@@ -42,10 +48,28 @@ public class MessageFragment extends DialogFragment {
 
 //        View layout = view.findViewById(R.id.fragment_message_layout);
 
-        TextView textView = view.findViewById(R.id.fragment_message_text);
-        textView.setText("I am a Fragment");
+//        TextView textView = view.findViewById(R.id.fragment_message_text);
+//        textView.setText("I am a Fragment");
 
-        Button button = view.findViewById(R.id.fragment_message_next_btn);
+        final Button button = view.findViewById(R.id.SendButton);
+
+        EditText msgInput = view.findViewById(R.id.msgInput);
+        msgInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                button.setEnabled(!TextUtils.isEmpty(s));
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +93,5 @@ public class MessageFragment extends DialogFragment {
         if (context instanceof MessageFragmentListener) {
             listener = (MessageFragmentListener) context;
         }
-
     }
-
-
 }

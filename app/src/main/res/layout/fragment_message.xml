@@ -12,8 +12,19 @@
         tools:text="The text"/>
 
     <Button
-        android:id="@+id/fragment_message_next_btn"
+        android:id="@+id/SendButton"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show next message" />
+        android:layout_alignParentRight="true"
+        android:text="Send" />
+
+    <EditText
+        android:id="@+id/msgInput"
+        android:layout_toLeftOf="@id/SendButton"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_toStartOf="@id/SendButton" />
+
 </RelativeLayout>

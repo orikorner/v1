@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements MessageFragmentLi
     protected DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     private String TAG = "MainActivity";
     EditText msgInput;
+    ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,56 +32,72 @@ public class MainActivity extends AppCompatActivity implements MessageFragmentLi
 
         Log.i(TAG, "onCreate");
 
-        ListView mListView = findViewById(R.id.OriListView);
+        mListView = findViewById(R.id.OriListView);
 
         ArrayList<ChatBox> chatBoxArr = new ArrayList<>();
         mAdapter = new CustomAdaptor(chatBoxArr);
         mListView.setAdapter(mAdapter);
 
-        final Button sendButton = findViewById(R.id.SendButton);
+        final MessageFragment messageFragment = MessageFragment.newInstance("Hello !!!");
+        getSupportFragmentManager().beginTransaction().
+                add(R.id.activity_main_frame, messageFragment).commit();
+
+        final Button sendButton = findViewById(R.id.fragment_message_next_btn);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                 Log.i(TAG, "onClickChat");
-                if (!TextUtils.isEmpty(msgInput.getText()))
-                {
-                    Date date = new Date();
-                    EditText msgInp = findViewById(R.id.msgInput);
-                    String currInput = msgInp.getText().toString();
-                    System.out.println(currInput);
-                    String currTime = dateFormat.format(date);
-
-                    ChatBox newChatBox = new ChatBox("Ori", currInput, currTime);
-                    mAdapter.addMessage(newChatBox);
-                    msgInput.setText("");
-                }
+//                if (!TextUtils.isEmpty(msgInput.getText()))
+//                {
+//                    Date date = new Date();
+//                    EditText msgInp = findViewById(R.id.msgInput);
+//                    String currInput = msgInp.getText().toString();
+//                    String currTime = dateFormat.format(date);
+//
+//                    ChatBox newChatBox = new ChatBox("Ori", currInput, currTime);
+//                    mAdapter.addMessage(newChatBox);
+//                    msgInput.setText("");
+//                }
+                messageFragment.startActivity(null);
             }
         });
 
-        msgInput = findViewById(R.id.msgInput);
-        msgInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                sendButton.setEnabled(!TextUtils.isEmpty(s));
-            }
-        });
+//        mListView.setOnItemLongClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Object item = mListView.getItemAtPosition(position);
+//
+//            }
+//        });
     }
 
     @Override
     public void onNextMessageClicked() {
         Log.i(TAG, "onNextMessageClicked");
         MessageFragment messageFragment = MessageFragment.newInstance("WORLD !!!");
+
+//        sendButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//        Log.i(TAG, "onClickChat");
+        if (!TextUtils.isEmpty(msgInput.getText()))
+        {
+            Date date = new Date();
+            EditText msgInp = findViewById(R.id.msgInput);
+            String currInput = msgInp.getText().toString();
+            String currTime = dateFormat.format(date);
+
+            ChatBox newChatBox = new ChatBox("Ori", currInput, currTime);
+            mAdapter.addMessage(newChatBox);
+            msgInput.setText("");
+        }
+//            }
+//        });
+
 
         getSupportFragmentManager().beginTransaction().
                 replace(R.id.activity_main_frame, messageFragment).commit();
