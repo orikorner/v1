@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,10 +15,12 @@ class CustomAdaptor extends BaseAdapter
 {
 
     final private ArrayList<ChatBox> msgs;
+    final private OnClickListener listener;
     private String TAG = "CustomAdapter";
 
-    CustomAdaptor(ArrayList<ChatBox> items) {
+    CustomAdaptor(ArrayList<ChatBox> items, OnClickListener listener) {
         this.msgs = items;
+        this.listener = listener;
     }
 
     @Override
@@ -42,6 +45,7 @@ class CustomAdaptor extends BaseAdapter
         Log.i(TAG, "addMessage");
         msgs.add(newMsg);
     }
+
 
     @Override
     public int getCount() {

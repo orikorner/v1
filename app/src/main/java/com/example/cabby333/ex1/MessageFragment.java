@@ -4,8 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
+//import android.support.v4.app.DialogFragment;
+//import android.app.DialogFragment;
+//import android.support.v4.app.Fragment;
+import android.app.Fragment;
+import android.support.v4.app.
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -22,22 +25,12 @@ import org.w3c.dom.Text;
 import java.util.Date;
 
 
-public class MessageFragment extends DialogFragment {
+public class MessageFragment extends Fragment {
 
 
     private static final String ARGS_MESSAGE = "args_message";
     private static final String TAG = "MessageFragment";
     private MessageFragmentListener listener;
-
-    public static MessageFragment newInstance(String message) {
-        Log.i(TAG, "newInstance");
-        MessageFragment messageFragment = new MessageFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString(ARGS_MESSAGE, message);
-        messageFragment.setArguments(bundle);
-
-        return messageFragment;
-    }
 
     @Nullable
     @Override
@@ -54,22 +47,7 @@ public class MessageFragment extends DialogFragment {
         final Button button = view.findViewById(R.id.SendButton);
 
         EditText msgInput = view.findViewById(R.id.msgInput);
-        msgInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                button.setEnabled(!TextUtils.isEmpty(s));
-            }
-        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,5 +71,17 @@ public class MessageFragment extends DialogFragment {
         if (context instanceof MessageFragmentListener) {
             listener = (MessageFragmentListener) context;
         }
+    }
+
+    public static MessageFragment newInstance(String message) {
+
+        Log.i(TAG, "newInstance");
+
+        MessageFragment messageFragment = new MessageFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(ARGS_MESSAGE, message);
+        messageFragment.setArguments(bundle);
+
+        return messageFragment;
     }
 }

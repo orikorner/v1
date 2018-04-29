@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity implements MessageFragmentLi
         mAdapter = new CustomAdaptor(chatBoxArr);
         mListView.setAdapter(mAdapter);
 
-        final MessageFragment messageFragment = MessageFragment.newInstance("Hello !!!");
-        getSupportFragmentManager().beginTransaction().
-                add(R.id.activity_main_frame, messageFragment).commit();
+//        final MessageFragment messageFragment = MessageFragment.newInstance("Hello !!!");
+//        getSupportFragmentManager().beginTransaction().
+//                add(R.id.activity_main_frame, messageFragment).commit();
 
         final Button sendButton = findViewById(R.id.fragment_message_next_btn);
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -48,30 +48,29 @@ public class MainActivity extends AppCompatActivity implements MessageFragmentLi
             public void onClick(View v)
             {
                 Log.i(TAG, "onClickChat");
-//                if (!TextUtils.isEmpty(msgInput.getText()))
-//                {
-//                    Date date = new Date();
-//                    EditText msgInp = findViewById(R.id.msgInput);
-//                    String currInput = msgInp.getText().toString();
-//                    String currTime = dateFormat.format(date);
-//
-//                    ChatBox newChatBox = new ChatBox("Ori", currInput, currTime);
-//                    mAdapter.addMessage(newChatBox);
-//                    msgInput.setText("");
-//                }
+                if (!TextUtils.isEmpty(msgInput.getText()))
+                {
+                    Date date = new Date();
+                    EditText msgInp = findViewById(R.id.msgInput);
+                    String currInput = msgInp.getText().toString();
+                    String currTime = dateFormat.format(date);
+
+                    ChatBox newChatBox = new ChatBox("Ori", currInput, currTime);
+                    mAdapter.addMessage(newChatBox);
+                    msgInput.setText("");
+                }
                 messageFragment.startActivity(null);
             }
         });
 
 
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object item = mListView.getItemAtPosition(position);
 
-//        mListView.setOnItemLongClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Object item = mListView.getItemAtPosition(position);
-//
-//            }
-//        });
+            }
+        });
     }
 
     @Override
@@ -79,27 +78,7 @@ public class MainActivity extends AppCompatActivity implements MessageFragmentLi
         Log.i(TAG, "onNextMessageClicked");
         MessageFragment messageFragment = MessageFragment.newInstance("WORLD !!!");
 
-//        sendButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v)
-//            {
-//        Log.i(TAG, "onClickChat");
-        if (!TextUtils.isEmpty(msgInput.getText()))
-        {
-            Date date = new Date();
-            EditText msgInp = findViewById(R.id.msgInput);
-            String currInput = msgInp.getText().toString();
-            String currTime = dateFormat.format(date);
-
-            ChatBox newChatBox = new ChatBox("Ori", currInput, currTime);
-            mAdapter.addMessage(newChatBox);
-            msgInput.setText("");
-        }
-//            }
-//        });
-
-
         getSupportFragmentManager().beginTransaction().
-                replace(R.id.activity_main_frame, messageFragment).commit();
+                add(R.id.activity_main_frame, messageFragment).commit();
     }
 }
