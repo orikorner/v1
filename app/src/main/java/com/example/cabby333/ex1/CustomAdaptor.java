@@ -34,6 +34,16 @@ class CustomAdaptor extends BaseAdapter
         outBox.setText(newLine);
         outImage.setImageResource(R.drawable.ori);
 
+        rowItem.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Log.i(TAG, "onLongClick");
+                return true;
+//                return false;
+            }
+        });
+
+
         return rowItem;
     }
 
@@ -57,4 +67,9 @@ class CustomAdaptor extends BaseAdapter
     public long getItemId(int position) {
         return position;
     }
+
+    interface OnClickListener {
+        void onClick(ChatBox msg);
+    }
+
 }

@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements CustomAdaptor.OnClickListener
 {
 
     private CustomAdaptor mAdapter;
@@ -74,5 +74,12 @@ public class MainActivity extends AppCompatActivity
                 sendButton.setEnabled(!TextUtils.isEmpty(s));
             }
         });
+    }
+
+    @Override
+    public void onClick(ChatBox msg) {
+        Log.i(TAG, "onClick");
+        LongClickViewFrag frag = LongClickViewFrag.newInstance(msg);
+        getSupportFragmentManager().beginTransaction().add(R.id.frame, frag).commit();
     }
 }
