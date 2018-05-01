@@ -34,12 +34,13 @@
         android:layout_marginTop="80dp">
     </ListView>
 
-    <FrameLayout
+    <fragment
+        android:name="com.example.cabby333.ex1.LongClickViewFrag"
         android:id="@+id/frame"
+        android:tag="mine"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
+        android:layout_height="match_parent"
+        />
 
 </RelativeLayout>
 

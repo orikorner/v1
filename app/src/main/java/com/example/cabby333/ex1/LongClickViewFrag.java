@@ -9,34 +9,31 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class LongClickViewFrag extends Fragment {
 
     private static final String TAG = "LongClickViewFrag";
-    private static final String KEY_MESSAGE = "message";
+    private TextView msg;
+    private View thisView;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.i(TAG, "onCreateView");
-        View v = inflater.inflate(R.layout.activity_chat, container, false);
-
-        return v;
-
-
+        thisView = inflater.inflate(R.layout.activity_chat, container, false);
+        msg = thisView.findViewById(R.id.frag_line);
+        return thisView;
     }
 
-    public static LongClickViewFrag newInstance(ChatBox msg) {
-
-        Log.i(TAG, "newInstance");
-        Bundle args = new Bundle();
-        args.putString(KEY_MESSAGE, msg.toString());
-
-        LongClickViewFrag fragment = new LongClickViewFrag();
-        fragment.setArguments(args);
-        return fragment;
+    public void setMsg(String newMsg)
+    {
+        Log.i(TAG, "setMsg");
+        this.msg.setText(newMsg);
+        RelativeLayout rLay = thisView.findViewById(R.id.frag_layout);
+        rLay.setVisibility(View.VISIBLE);
     }
 
 }

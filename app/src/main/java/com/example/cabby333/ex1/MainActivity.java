@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity
 {
 
     private CustomAdaptor mAdapter;
+    private LongClickViewFrag fragment;
     protected DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     private String TAG = "MainActivity";
     EditText msgInput;
@@ -33,8 +36,13 @@ public class MainActivity extends AppCompatActivity
         ListView mListView = findViewById(R.id.OriListView);
 
         ArrayList<ChatBox> chatBoxArr = new ArrayList<>();
-        mAdapter = new CustomAdaptor(chatBoxArr);
+
+        fragment = (LongClickViewFrag)getSupportFragmentManager().findFragmentById(R.id.frame);
+
+        mAdapter = new CustomAdaptor(chatBoxArr, fragment);
         mListView.setAdapter(mAdapter);
+
+
 
         final Button sendButton = findViewById(R.id.SendButton);
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -47,23 +55,12 @@ public class MainActivity extends AppCompatActivity
                     Date date = new Date();
                     EditText msgInp = findViewById(R.id.msgInput);
                     String currInput = msgInp.getText().toString();
-                    System.out.println(currInput);
                     String currTime = dateFormat.format(date);
 
                     final ChatBox newChatBox = new ChatBox("Ori", currInput, currTime);
 
                     mAdapter.addMessage(newChatBox);
                     msgInput.setText("");
-
-                    v.setOnLongClickListener(new View.OnLongClickListener() {
-                        @Override
-                        public boolean onLongClick(View v) {
-                            Log.i(TAG, "onLongClick");
-                            LongClickViewFrag frag = LongClickViewFrag.newInstance(newChatBox);
-                            getSupportFragmentManager().beginTransaction().add(R.id.frame, frag).commit();
-                            return true;
-                        }
-                    });
                 }
             }
         });
