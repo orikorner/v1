@@ -38,6 +38,7 @@ class CustomAdaptor extends BaseAdapter
             @Override
             public boolean onLongClick(View v) {
                 Log.i(TAG, "onLongClick");
+
                 return true;
 //                return false;
             }
@@ -66,10 +67,6 @@ class CustomAdaptor extends BaseAdapter
     @Override
     public long getItemId(int position) {
         return position;
-    }
-
-    interface OnClickListener {
-        void onClick(ChatBox msg);
     }
 
 }

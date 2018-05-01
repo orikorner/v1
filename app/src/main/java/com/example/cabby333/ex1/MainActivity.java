@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements CustomAdaptor.OnClickListener
+public class MainActivity extends AppCompatActivity
 {
 
     private CustomAdaptor mAdapter;
@@ -50,9 +50,20 @@ public class MainActivity extends AppCompatActivity implements CustomAdaptor.OnC
                     System.out.println(currInput);
                     String currTime = dateFormat.format(date);
 
-                    ChatBox newChatBox = new ChatBox("Ori", currInput, currTime);
+                    final ChatBox newChatBox = new ChatBox("Ori", currInput, currTime);
+
                     mAdapter.addMessage(newChatBox);
                     msgInput.setText("");
+
+                    v.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            Log.i(TAG, "onLongClick");
+                            LongClickViewFrag frag = LongClickViewFrag.newInstance(newChatBox);
+                            getSupportFragmentManager().beginTransaction().add(R.id.frame, frag).commit();
+                            return true;
+                        }
+                    });
                 }
             }
         });
@@ -74,12 +85,5 @@ public class MainActivity extends AppCompatActivity implements CustomAdaptor.OnC
                 sendButton.setEnabled(!TextUtils.isEmpty(s));
             }
         });
-    }
-
-    @Override
-    public void onClick(ChatBox msg) {
-        Log.i(TAG, "onClick");
-        LongClickViewFrag frag = LongClickViewFrag.newInstance(msg);
-        getSupportFragmentManager().beginTransaction().add(R.id.frame, frag).commit();
     }
 }

@@ -10,37 +10,37 @@
     android:paddingRight="16dp"
     tools:context="com.example.cabby333.ex1.MainActivity">
 
-
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Enter your name here..." />
-
-    <EditText
-        android:id="@+id/msgInput"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+    <ImageView
+        android:id="@+id/oriIm"
+        android:layout_width="@dimen/li_friend_image_size"
+        android:layout_height="@dimen/li_friend_image_size"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/name"
-        android:text="Enter your msg here..." />
+        android:layout_margin="@dimen/li_friend_image_margin"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/ori"/>
 
-    <ListView
-        android:id="@+id/OriListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="80dp">
-    </ListView>
-
-    <Button
-        android:id="@+id/SendButton"
-        style="@style/Widget.AppCompat.Button.Colored"
+    <TextView
+        android:id="@+id/line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/msgInput"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="Send" />
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/li_friend_image_margin_right"
+        android:layout_marginTop="@dimen/li_friend_image_margin_top"
+        android:layout_toEndOf="@+id/oriIm"
+        android:padding="@dimen/app_default_padding"
+        android:textSize="@dimen/text_size_large"
+        tools:text=" Ori Korner: " />
+
+    <!--<TextView-->
+        <!--android:id="@+id/content"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/timestamp"-->
+        <!--tools:text="this is a content of a a message,-->
+        <!--can be a few lines long and might take up much space"/>-->
+
+
 
 </RelativeLayout>
