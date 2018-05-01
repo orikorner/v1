@@ -24,6 +24,7 @@ public class MainActivity extends Activity
     private CustomAdaptor mAdapter;
     private LongClickViewFrag fragment;
     protected DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    public View container;
     private String TAG = "MainActivity";
     EditText msgInput;
 
@@ -33,6 +34,8 @@ public class MainActivity extends Activity
         setContentView(R.layout.activity_main);
 
         Log.i(TAG, "onCreate");
+
+        container = findViewById(R.id.container);
 
         ListView mListView = findViewById(R.id.OriListView);
 

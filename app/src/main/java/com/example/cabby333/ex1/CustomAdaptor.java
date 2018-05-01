@@ -16,11 +16,11 @@ class CustomAdaptor extends BaseAdapter
 
     final private ArrayList<ChatBox> msgs;
     private String TAG = "CustomAdapter";
-    private static LongClickViewFrag fragment;
+    private LongClickViewFrag fragment;
 
     CustomAdaptor(ArrayList<ChatBox> items, LongClickViewFrag fragment) {
         this.msgs = items;
-        fragment = fragment;
+        this.fragment = fragment;
     }
 
     @Override
@@ -42,7 +42,7 @@ class CustomAdaptor extends BaseAdapter
             public boolean onLongClick(View v) {
                 Log.i(TAG, "onLongClick");
                 TextView chatBoxMsg = (TextView)v.findViewById(R.id.line);
-                fragment.setMsg(chatBoxMsg.toString());
+                fragment.setMsg(chatBoxMsg.getText().toString());
                 return true;
             }
         });
