@@ -1,10 +1,10 @@
 package com.example.cabby333.ex1;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +27,7 @@ public class LongClickViewFrag extends Fragment {
         msg = thisView.findViewById(R.id.frag_line);
         return thisView;
     }
+
 
     public void setMsg(String newMsg)
     {

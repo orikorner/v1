@@ -1,5 +1,6 @@
 package com.example.cabby333.ex1;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends Activity
 {
 
     private CustomAdaptor mAdapter;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity
 
         ArrayList<ChatBox> chatBoxArr = new ArrayList<>();
 
-        fragment = (LongClickViewFrag)getSupportFragmentManager().findFragmentById(R.id.frame);
+        fragment = (LongClickViewFrag)getFragmentManager().findFragmentById(R.id.frame);
 
         mAdapter = new CustomAdaptor(chatBoxArr, fragment);
         mListView.setAdapter(mAdapter);
