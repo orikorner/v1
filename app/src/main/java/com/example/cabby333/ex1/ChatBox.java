@@ -3,7 +3,7 @@ package com.example.cabby333.ex1;
 
 public class ChatBox
 {
-    private String name, msg, timeStamp;
+    private String name, msg, timeStamp, fullMsg;
 
     ChatBox(String name, String input, String timeStamp) {
         this.name = name;
@@ -24,6 +24,15 @@ public class ChatBox
     public String getTimeStamp()
     {
         return timeStamp;
+    }
+
+    public void setFullMsg(String fullmsg) {
+        this.fullMsg = fullmsg;
+    }
+
+    public String getFullMsg()
+    {
+        return this.fullMsg;
     }
 
 }

@@ -4,43 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingTop="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
     tools:context="com.example.cabby333.ex1.MainActivity">
 
-    <Button
-        android:id="@+id/SendButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="Send" />
-
-    <EditText
-        android:id="@+id/msgInput"
-        android:layout_toLeftOf="@id/SendButton"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_toStartOf="@id/SendButton" />
-
-    <ListView
-        android:id="@+id/OriListView"
+    <RelativeLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp">
-    </ListView>
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        >
 
-    <fragment
-        android:name="com.example.cabby333.ex1.LongClickViewFrag"
-        android:id="@+id/frame"
-        android:tag="mine"
+        <Button
+            android:id="@+id/SendButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="Send" />
+
+        <EditText
+            android:id="@+id/msgInput"
+            android:layout_toLeftOf="@id/SendButton"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_toStartOf="@id/SendButton" />
+
+        <ListView
+            android:id="@+id/OriListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="80dp">
+        </ListView>
+
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:layout_alignParentTop="true"
+        >
+        <fragment
+            android:name="com.example.cabby333.ex1.LongClickViewFrag"
+            android:id="@+id/frame"
+            android:tag="mine"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
 
 </RelativeLayout>
-

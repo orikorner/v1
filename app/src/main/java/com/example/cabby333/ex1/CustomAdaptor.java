@@ -24,7 +24,7 @@ class CustomAdaptor extends BaseAdapter
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
+    public View getView(final int position, View convertView, ViewGroup parent)
     {
         Log.i(TAG, "getView");
         @SuppressLint("ViewHolder") View rowItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_list_row, parent, false);
@@ -34,6 +34,7 @@ class CustomAdaptor extends BaseAdapter
         ChatBox currChatBox = getItem(position);
 
         String newLine = "(" + currChatBox.getTimeStamp() + ")\n" + "From: " + currChatBox.getName() + "\n" + currChatBox.getMsg();
+        currChatBox.setFullMsg(newLine);
         outBox.setText(newLine);
         outImage.setImageResource(R.drawable.ori);
 
@@ -54,6 +55,23 @@ class CustomAdaptor extends BaseAdapter
     {
         Log.i(TAG, "addMessage");
         msgs.add(newMsg);
+    }
+
+    public void deleteMessage(String message) {
+        int index = -1;
+        Log.i(TAG, "deleteMessage");
+        for (int i = 0; i < msgs.size(); i++) {
+            if (msgs.get(i).getFullMsg().equals(message)) {
+                index = i;
+                Log.i(TAG, "deleteMessageFound");
+                break;
+            }
+        }
+
+        if (index != -1) {
+            Log.i(TAG, "deleteMessageFound2");
+            msgs.remove(index);
+        }
     }
 
     @Override

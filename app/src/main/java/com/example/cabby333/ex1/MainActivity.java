@@ -21,7 +21,7 @@ import java.util.Date;
 public class MainActivity extends Activity
 {
 
-    private CustomAdaptor mAdapter;
+    public CustomAdaptor mAdapter;
     private LongClickViewFrag fragment;
     protected DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     public View container;
@@ -46,8 +46,6 @@ public class MainActivity extends Activity
         mAdapter = new CustomAdaptor(chatBoxArr, fragment);
         mListView.setAdapter(mAdapter);
 
-
-
         final Button sendButton = findViewById(R.id.SendButton);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +59,7 @@ public class MainActivity extends Activity
                     String currInput = msgInp.getText().toString();
                     String currTime = dateFormat.format(date);
 
-                    final ChatBox newChatBox = new ChatBox("Ori", currInput, currTime);
+                    ChatBox newChatBox = new ChatBox("Ori", currInput, currTime);
 
                     mAdapter.addMessage(newChatBox);
                     msgInput.setText("");

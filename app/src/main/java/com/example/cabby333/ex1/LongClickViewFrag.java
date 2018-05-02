@@ -13,12 +13,13 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class LongClickViewFrag extends Fragment {
 
     private static final String TAG = "LongClickViewFrag";
     private TextView msg;
     private View thisView;
-
 
     @Nullable
     @Override
@@ -33,9 +34,16 @@ public class LongClickViewFrag extends Fragment {
                 ((MainActivity)getActivity()).container.setVisibility(View.VISIBLE);
             }
         });
+        ((Button) thisView.findViewById(R.id.DeleteButton)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                thisView.setVisibility(View.GONE);
+                ((MainActivity)getActivity()).container.setVisibility(View.VISIBLE);
+                ((MainActivity)getActivity()).mAdapter.deleteMessage(msg.getText().toString());
+            }
+        });
         return thisView;
     }
-
 
     public void setMsg(String newMsg)
     {
@@ -44,5 +52,4 @@ public class LongClickViewFrag extends Fragment {
         thisView.setVisibility(View.VISIBLE);
         ((MainActivity)getActivity()).container.setVisibility(View.GONE);
     }
-
 }
