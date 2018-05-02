@@ -71,6 +71,7 @@ class CustomAdaptor extends BaseAdapter
         if (index != -1) {
             Log.i(TAG, "deleteMessageFound2");
             msgs.remove(index);
+            notifyDataSetChanged();
         }
     }
 
