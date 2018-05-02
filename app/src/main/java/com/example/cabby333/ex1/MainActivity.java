@@ -1,5 +1,6 @@
 package com.example.cabby333.ex1;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -7,23 +8,25 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements MessageFragmentListener
+public class MainActivity extends Activity
 {
 
     private CustomAdaptor mAdapter;
+    private LongClickViewFrag fragment;
     protected DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    public View container;
     private String TAG = "MainActivity";
     EditText msgInput;
-    ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +35,20 @@ public class MainActivity extends AppCompatActivity implements MessageFragmentLi
 
         Log.i(TAG, "onCreate");
 
-        mListView = findViewById(R.id.OriListView);
+        container = findViewById(R.id.container);
+
+        ListView mListView = findViewById(R.id.OriListView);
 
         ArrayList<ChatBox> chatBoxArr = new ArrayList<>();
-        mAdapter = new CustomAdaptor(chatBoxArr);
+
+        fragment = (LongClickViewFrag)getFragmentManager().findFragmentById(R.id.frame);
+
+        mAdapter = new CustomAdaptor(chatBoxArr, fragment);
         mListView.setAdapter(mAdapter);
 
-//        final MessageFragment messageFragment = MessageFragment.newInstance("Hello !!!");
-//        getSupportFragmentManager().beginTransaction().
-//                add(R.id.activity_main_frame, messageFragment).commit();
 
-        final Button sendButton = findViewById(R.id.fragment_message_next_btn);
+
+        final Button sendButton = findViewById(R.id.SendButton);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -55,30 +61,30 @@ public class MainActivity extends AppCompatActivity implements MessageFragmentLi
                     String currInput = msgInp.getText().toString();
                     String currTime = dateFormat.format(date);
 
-                    ChatBox newChatBox = new ChatBox("Ori", currInput, currTime);
+                    final ChatBox newChatBox = new ChatBox("Ori", currInput, currTime);
+
                     mAdapter.addMessage(newChatBox);
                     msgInput.setText("");
                 }
-                messageFragment.startActivity(null);
             }
         });
 
-
-        mListView.setOnItemLongClickListener(new AdapterView.OnItemClickListener() {
+        msgInput = findViewById(R.id.msgInput);
+        msgInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object item = mListView.getItemAtPosition(position);
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                sendButton.setEnabled(!TextUtils.isEmpty(s));
+            }
         });
-    }
-
-    @Override
-    public void onNextMessageClicked() {
-        Log.i(TAG, "onNextMessageClicked");
-        MessageFragment messageFragment = MessageFragment.newInstance("WORLD !!!");
-
-        getSupportFragmentManager().beginTransaction().
-                add(R.id.activity_main_frame, messageFragment).commit();
     }
 }

@@ -10,30 +10,37 @@
     android:paddingRight="16dp"
     tools:context="com.example.cabby333.ex1.MainActivity">
 
-
-    <FrameLayout
-        android:id="@+id/activity_main_frame"
-        android:layout_width="200dp"
-        android:layout_height="450dp"
-        android:layout_centerInParent="true">
-    </FrameLayout>
-
     <Button
-        android:id="@+id/fragment_message_next_btn"
+        android:id="@+id/SendButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/activity_main_frame"
-        android:layout_centerHorizontal="true"
-        android:text="Enter a new Message" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Send" />
 
+    <EditText
+        android:id="@+id/msgInput"
+        android:layout_toLeftOf="@id/SendButton"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_toStartOf="@id/SendButton" />
 
     <ListView
         android:id="@+id/OriListView"
         android:layout_width="match_parent"
-        android:layout_height="430dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="80dp">
     </ListView>
+
+    <fragment
+        android:name="com.example.cabby333.ex1.LongClickViewFrag"
+        android:id="@+id/frame"
+        android:tag="mine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 </RelativeLayout>
 

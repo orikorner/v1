@@ -26,5 +26,4 @@ public class ChatBox
         return timeStamp;
     }
 
-
 }
